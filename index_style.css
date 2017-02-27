@@ -1,0 +1,240 @@
+* {
+    padding: 0;
+    margin: 0;
+    background: none;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+head {
+    display: none;
+}
+
+body {
+    color: black;
+    background: url(res/top_background_fill.png) repeat-x 0 0;
+    font-family: "본고딕", "Noto Sans", sans-serif;
+    width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+li {
+    display: inline;
+}
+
+li h2 {
+    display: inline;
+}
+
+#header {
+    background: url(res/top_background.png) no-repeat 100% 0;
+    min-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#skip {
+    vertical-align: middle;
+    text-align: center;
+    background: red;
+    z-index: 100;
+    width: 100%;
+    position: absolute;
+}
+
+#skip a {
+    text-decoration: none;
+    color: black;
+    overflow: hidden;
+    height: 0;
+    display: block;
+}
+
+#skip a:hover, #skip a:active, #skip a:focus {
+    height: 27px;
+    position: relative;
+}
+
+header .topMenu {
+    width: 100%;
+    height: 27px;
+    word-break: keep-all;
+    text-align: center;
+}
+
+header .topMenu li:not([class="last"])::after {
+    content: "|";
+    margin-left: 5px;
+    margin-right: 5px;
+    color: white;
+}
+
+header .topMain {
+    height: 106px;
+    text-align: right;
+}
+
+header .topMain .logo {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+header .topMain .searcher {
+    position: relative;
+    top: -70px;
+    margin-right: 10px;
+    vertical-align: middle;
+    text-align: left;
+    display: inline-block;
+}
+
+header .topMain .searcher #unified_search_form {
+    vertical-align: middle;
+}
+
+header #unified_search_form .searchBox {
+    display: inline;
+}
+
+header #unified_search_form .searchButton {
+    display: inline-block;
+    border: ridge 1px rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.2);
+    position: relative;
+}
+
+header .searchButton a {
+    color: white;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+header .searchBox #unifiedSearchBox {
+    width: 250px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+header .searchBox #unifiedSearchBox::-webkit-input-placeholder {
+    color: white;
+    text-align: left;
+}
+
+header .keywords::before {
+    content: url("res/magnifier.png");
+}
+
+header .keywords ul {
+    display: inline;
+}
+
+header .keywords ul li a {
+    color: white;
+}
+
+header .keywords ul li:not([class="last"])::after {
+    content: "|";
+    margin-left: 5px;
+    margin-right: 5px;
+    color: white;
+}
+
+header .navigator {
+    padding: 0;
+    margin-top: 0;
+    min-width: 1300px;
+    overflow: hidden;
+}
+
+header .navigator .main {
+    display: inline-block;
+    height: 35px;
+    width: 45%;
+    overflow: hidden;
+}
+
+header .navigator .main li {
+    margin-left: 60px;
+}
+
+header .navigator .recent_issues {
+    display: inline-block;
+    background-image: url("res/issues_background.png");
+    text-align: left;
+    height: 35px;
+    width: 480px;
+    position: relative;
+    top: 0;
+    overflow: hidden;
+}
+
+header .navigator .recent_issues li {
+    margin-left:65px;
+    vertical-align: middle;
+}
+
+header .navigator .recent_issues li a{
+    color: white;
+}
+
+#container .wrapper {
+    min-width: 1300px;
+}
+
+#container .main_notice {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    vertical-align: top;
+}
+
+.main_notice .left {
+    display: inline-block;
+    width: 650px;
+    height: 800px;
+    overflow: hidden;
+    margin-right: 50px;
+    background-color: white;
+}
+
+.main_notice .right {
+    display: inline-block;
+    width: 500px;
+    height: 800px;
+    overflow: hidden;
+}
+
+.left .title {
+    background-color: #cc4b4b;
+    vertical-align: middle;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 25px;
+}
+
+.title .subject {
+    display: inline-block;
+    position: relative;
+    width: 300px;
+}
+
+.title .more {
+    display: inline-block;
+    position: relative;
+    width: 300px;
+    text-align: right;
+}
+
+.post .subject {
+    display: block;
+    margin: 10px;
+    font-size: 30px;
+}
