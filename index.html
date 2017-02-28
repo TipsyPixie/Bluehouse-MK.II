@@ -44,21 +44,21 @@
                 </h1>
             </div>
             <div class="searchers">
-                <form id="unified_search_form" action="http://www1.president.go.kr/util/search/search.php">
-                    <input type="text" name="query" id="unifiedSearchBox" placeholder="촛불시위를 검색해보세요!"
+                <form id="unified_search_form" action="http://www1.president.go.kr/util/search/search.php" accept-charset="EUC-KR">
+                    <input value="기본값" type="text" name="query" id="unifiedSearchBox" placeholder="촛불시위를 검색해보세요!"
                            title="통합검색어 입력">
-                    <a href="http://www1.president.go.kr/util/search/search.php">검색</a>
+                    <a href="#" onclick="document.getElementById('unified_search_form').submit();">검색</a>
                 </form>
                 <div class="keywords">
                     <ul>
                         <li>
-                            <a>촛불시위</a>
+                            <a href="#" onclick="go_search('촛불시위');">촛불시위</a>
                         </li>
                         <li>
-                            <a>우주의기운</a>
+                            <a href="#" onclick="go_search('우주의기운');">우주의기운</a>
                         </li>
                         <li class="last">
-                            <a>자괴감</a>
+                            <a href="#" onclick="go_search('자괴감');">자괴감</a>
                         </li>
                     </ul>
                 </div>
@@ -291,6 +291,8 @@
             </section>
         </div>
     </div>
+
+    <script src="scripts.js"></script>
 
     <footer id="footer">
         <div class="wrapper">
