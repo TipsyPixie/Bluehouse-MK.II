@@ -12,172 +12,140 @@
     <title>대한민국 청와대 Mk.II</title>
 </head>
 <body>
-    <!-- 메뉴 건너뛰기 -->
-    <div id="skip">
-        <a id="skip_container" href="#container">본문 내용 바로가기</a>
-        <a id="skip_navigator" href="#navigator">메인 메뉴 바로가기</a>
-    </div>
-
-    <div id="wrap">
-        <header id="header">
-            <!-- 최상단 메뉴 -->
-            <div class="topMenu">
-                <ul>
-                    <li>
-                        <a href="http://www1.president.go.kr/util/search/index.php" title="통합검색 바로가기">
-                            <img src="res/icon_srch_off.png" alt="search">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://children.president.go.kr/" title="어린이 청와대 바로가기">
-                            <img src="res/icon_kids_off.png" alt="children page">
-                        </a>
-                    </li>
-                    <li class="last">
-                        <a href="http://english.president.go.kr/" title="Global version">
-                            <img src="res/icon_global_off.png" alt="English web">
-                        </a>
-                    </li>
-                </ul>
+<div id="wrap">
+    <header id="header">
+        <!-- 최상단 메뉴 -->
+        <div class="topMenu">
+            <ul>
+                <li>
+                    <a href="http://www1.president.go.kr/util/search/index.php" title="통합검색 바로가기">
+                        <img id="top_srch" src="res/icon_srch_off.png" alt="search">
+                    </a>
+                </li>
+                <li>
+                    <a href="http://children.president.go.kr/" title="어린이 청와대 바로가기">
+                        <img id="top_children" src="res/icon_kids_off.png" alt="children page">
+                    </a>
+                </li>
+                <li class="last">
+                    <a href="http://english.president.go.kr/" title="Global version">
+                        <img id="top_global" src="res/icon_global_off.png" alt="English web">
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!-- 로고와 검색창 -->
+        <div class="topMain">
+            <div class="logo" `>
+                <h1>
+                    <a href="index.html" title="대한민국 청와대">
+                        <img src="res/main_logo.png" alt="Bluehouse, Republic of Korea">
+                    </a>
+                </h1>
             </div>
-            <!-- 로고와 검색창 -->
-            <div class="topMain">
-                <div class="allMenu"></div>
-                <div class="logo">
-                    <h1>
-                        <a href="index.html" title="대한민국 청와대">
-                            <img src="res/main_logo.png" alt="Bluehouse, Republic of Korea">
-                        </a>
-                    </h1>
-                </div>
-                <div class="searcher">
-                    <form id="unified_search_form" action="http://www1.president.go.kr/util/search/search.php">
-                        <div class="searchBox">
-                            <input type="text" name="query" id="unifiedSearchBox" placeholder="촛불시위를 검색해보세요!" title="통합검색어 입력">
-                        </div>
-                        <div class="searchButton">
-                            <a href="http://www1.president.go.kr/util/search/search.php">검색</a>
-                        </div>
-                    </form>
-                    <div class="keywords">
-                        <ul>
-                            <li>
-                                <a>촛불시위</a>
-                            </li>
-                            <li>
-                                <a>우주의기운</a>
-                            </li>
-                            <li class="last">
-                                <a>탄핵심판</a>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="searchers">
+                <form id="unified_search_form" action="http://www1.president.go.kr/util/search/search.php">
+                    <input type="text" name="query" id="unifiedSearchBox" placeholder="촛불시위를 검색해보세요!"
+                           title="통합검색어 입력">
+                    <a href="http://www1.president.go.kr/util/search/search.php">검색</a>
+                </form>
+                <div class="keywords">
+                    <ul>
+                        <li>
+                            <a>촛불시위</a>
+                        </li>
+                        <li>
+                            <a>우주의기운</a>
+                        </li>
+                        <li class="last">
+                            <a>자괴감</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <!-- 메인 메뉴 -->
-            <nav id="navigator" class="navigator">
-                <ul class="main">
-                    <li>
-                        <h2>
-                            <a href="http://www1.president.go.kr/news/index.php" title="뉴스">
-                                <img src="res/nav_news.png" alt="news">
-                            </a>
-                        </h2>
-                    </li>
-                    <li>
-                        <h2>
-                            <a href="http://www1.president.go.kr/policy/policy_result/result.php" title="정책">
-                                <img src="res/nav_policies.png" alt="policies">
-                            </a>
-                        </h2>
-                    </li>
-                    <li>
-                        <h2>
-                            <a href="http://www1.president.go.kr/sympathy/media.php" title="소통">
-                                <img src="res/nav_sympathy.png" alt="medias">
-                            </a>
-                        </h2>
-                    </li>
-                    <li>
-                        <h2>
-                            <a href="http://www1.president.go.kr/president/intro.php" title="대통령">
-                                <img src="res/nav_president.png" alt="president">
-                            </a>
-                        </h2>
-                    </li>
-                    <li>
-                        <h2>
-                            <a href="http://www1.president.go.kr/cheongwadae/cwdViewing/guidance.php" title="청와대">
-                                <img src="res/nav_bluehouse.png" alt="bluehouse">
-                            </a>
-                        </h2>
-                    </li>
-                </ul>
-                <ul class="recent_issues">
-                    <li>
-                        <a href="http://www1.president.go.kr/policy/hotIssue.php" target="_self" title="Hot 이슈"
-                           class="tab01">
-                            Hot 이슈
+        </div>
+        <!-- 메인 메뉴 -->
+        <nav id="navigator" class="navigator">
+            <ul class="main">
+                <li>
+                    <h2>
+                        <a href="http://www1.president.go.kr/news/index.php" title="뉴스">
+                            <img src="res/nav_news.png" alt="news">
                         </a>
-                    </li>
-                    <li>
-                        <a href="http://www1.president.go.kr/news/overseasTrip/2016/trip2016.php" target="_self"
-                           title="정상외교" class="tab02">
-                            정상외교
+                    </h2>
+                </li>
+                <li>
+                    <h2>
+                        <a href="http://www1.president.go.kr/policy/policy_result/result.php" title="정책">
+                            <img src="res/nav_policies.png" alt="policies">
                         </a>
-                    </li>
-                    <li>
-                        <a href="http://www1.president.go.kr/policy/policy_result/result.php" target="_self"
-                           title="정부 3년 정책 모음" class="tab03">
-                            정부 3년 정책 모음
+                    </h2>
+                </li>
+                <li>
+                    <h2>
+                        <a href="http://www1.president.go.kr/sympathy/media.php" title="소통">
+                            <img src="res/nav_sympathy.png" alt="medias">
                         </a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+                    </h2>
+                </li>
+                <li>
+                    <h2>
+                        <a href="http://www1.president.go.kr/president/intro.php" title="대통령">
+                            <img src="res/nav_president.png" alt="president">
+                        </a>
+                    </h2>
+                </li>
+                <li>
+                    <h2>
+                        <a href="http://www1.president.go.kr/cheongwadae/cwdViewing/guidance.php" title="청와대">
+                            <img src="res/nav_bluehouse.png" alt="bluehouse">
+                        </a>
+                    </h2>
+                </li>
+            </ul>
+            <ul class="recent_issues">
+                <li>
+                    <a href="http://www1.president.go.kr/policy/hotIssue.php" target="_self" title="Hot 이슈"
+                       class="tab01">
+                        Hot 이슈
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www1.president.go.kr/news/overseasTrip/2016/trip2016.php" target="_self"
+                       title="정상외교" class="tab02">
+                        정상외교
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www1.president.go.kr/policy/policy_result/result.php" target="_self"
+                       title="정부 3년 정책 모음" class="tab03">
+                        정부 3년 정책 모음
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
 
-        <!-- 본문 -->
-        <div id="container">
-            <!-- 움직이는 창 -->
-            <div class="mainVisual">
-                <div class="bx-wrapper">
-                    <div class="bx-viewport">
-
-                    </div>
-                    <div class="bx-controls bx-has-pager bx-has-controls-auto">
-                        <div class="bx-pager bx-default-pager">
-                            <div class="bx-pager-item">
-
-                            </div>
-                            <div class="bx-pager-item">
-
-                            </div>
-                        </div>
-                        <div class="bx-controls-auto">
-                            <div class="bx-controls-auto-item">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- 본문 내용들 -->
-            <div class="wrapper">
-                <!-- 청와대 소식 -->
-                <section class="main_notice">
-                    <div class="left">
-                        <!-- 왼쪽 상단 -->
-                        <article class="articleLeft01">
-                            <div class="title">
+    <!-- 본문 -->
+    <div id="container">
+        <!-- 본문 내용들 -->
+        <div class="wrapper">
+            <!-- 청와대 소식 -->
+            <section class="main_notice">
+                <div class="left">
+                    <!-- 왼쪽 상단 -->
+                    <article class="article01">
+                        <div class="title">
                                 <span class="subject">
                                     <img src="res/title_cwd_notice.png" alt="bluehouse news">
                                 </span>
-                                <span class="more">
+                            <span class="more">
                                     <a href="http://www1.president.go.kr/news/newsList2.php" title="청와대소식 목록">
                                         <img src="res/img_more.png" alt="청와대소식 더 보기">
                                     </a>
                                 </span>
-                            </div>
+                        </div>
+                        <div class="article01_contents">
                             <div class="post">
                                 <a class="subject" href="news.html">대통령, 헌법과 법률이 정한 절차에 따라 탄..</a>
                                 <span class="date">2016-12-09</span>
@@ -209,24 +177,26 @@
                             <div class="media">
                                 <div class="photo">
                                     <a>
-                                        <img src="res/articlel1_photo.jpg" alt="국무총리 간담회">
+                                        <img src="res/article1_ss.jpg" alt="순Siri">
                                     </a>
                                 </div>
                                 <div class="video">
                                     <a>
-                                        <img src="res/articlel1_photo2.jpg" alt="국무총리 간담회">
+                                        <img src="res/article1_ss2.jpg" alt="순실의 시대">
                                     </a>
                                 </div>
                             </div>
-                        </article>
-                        <!-- 왼쪽 하단 -->
-                        <article class="article02">
-                            <strong>
-                                <img src="res/title_highlight.png" alt="하이라이트 영상">
-                            </strong>
+                        </div>
+                    </article>
+                    <!-- 왼쪽 하단 -->
+                    <article class="article02">
+                        <strong>
+                            <img src="res/title_highlight.png" alt="하이라이트 영상">
+                        </strong>
+                        <div class="article02_contents">
                             <div class="thumbnail">
                                 <a>
-                                    <img src="res/articlel2_photo.jpg" alt="대국민 담화 영상">
+                                    <img src="res/baksamo.jpg" alt="대국민 담화 영상">
                                 </a>
                                 <span class="over"></span>
                                 <span class="video"></span>
@@ -257,145 +227,148 @@
                                     </li>
                                 </ul>
                             </div>
-                        </article>
-                    </div>
+                        </div>
+                    </article>
+                </div>
 
-                    <div class="right">
-                        <!-- 오른쪽 상단 -->
-                        <article class="article03">
-                            <a href="http://www1.president.go.kr/news/media/movie.php?srh%5Bview_mode%5D=detail&amp;srh%5Bseq%5D=18529"
-                               target="_self" title="박근혜 대통령, 대국민 담화">
-                                <img src="res/article3_photo.jpg" alt="박근혜 대통령, 대국민 담화">
+                <div class="right">
+                    <!-- 오른쪽 상단 -->
+                    <article class="article03">
+                        <a href="http://www1.president.go.kr/news/media/movie.php?srh%5Bview_mode%5D=detail&amp;srh%5Bseq%5D=18529"
+                           target="_self" title="박근혜 대통령, 대국민 담화">
+                            <img src="res/article3_photo.jpg" alt="박근혜 대통령, 대국민 담화">
+                        </a>
+                    </article>
+                    <!-- 오른쪽 하단 -->
+                    <article class="article04">
+                        <img src="res/article4_title.png" alt="대통령의 말">
+                        <div class="content">
+                            <a href="http://www1.president.go.kr/policy/compare.php" target="_blank"
+                               title="정책을 만드는 대통령의 비유">
+                                "사람 나고 법 났지, 법나고 사람 났나요."<br>
+                                정책사항마다 관련된 대통령의 주요 비유를 소개하고 있습니다.
+                                박근혜정부의 정책이 국민들에게 더욱 쉽고 친근하게 다가서 정책공감에 대한 폭을 넓힐 수 있기를 기대합니다.
                             </a>
-                        </article>
-                        <!-- 오른쪽 하단 -->
-                        <article class="article04">
-                            <img src="res/article4_title.png" alt="대통령의 말">
-                            <div class="content">
-                                <a href="http://www1.president.go.kr/policy/compare.php" target="_blank" title="정책을 만드는 대통령의 비유">
-                                    "사람 나고 법 났지, 법나고 사람 났나요."<br>
-                                    정책사항마다 관련된 대통령의 주요 비유를 소개하고 있습니다.
-                                    박근혜정부의 정책이 국민들에게 더욱 쉽고 친근하게 다가서 정책공감에 대한 폭을 넓힐 수 있기를 기대합니다.
-                                </a>
-                            </div>
-                            <div class="button">
-                                <a href="http://www1.president.go.kr/policy/compare.php" target="_blank" title="정책을 만드는 대통령의 비유">
-                                    더 보기
-                                </a>
-                            </div>
-                        </article>
-                    </div>
-                </section>
-                <!-- 정책 이슈 -->
-                <section class="main_policy">
-                    <div class="title">
+                        </div>
+                        <div class="button">
+                            <a href="http://www1.president.go.kr/policy/compare.php" target="_blank"
+                               title="정책을 만드는 대통령의 비유">
+                                더 보기
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <!-- 정책 이슈 -->
+            <section class="main_policy">
+                <div class="title">
                         <span class="subject">
                             <img src="res/policy_title.png" alt="정책 이슈">
                         </span>
-                        <span class="more">
+                    <span class="more">
                             <a href="http://www1.president.go.kr/policy/policy_result/result.php" title="정책 이슈 더 보기">
                                 <img src="res/img_more.png" alt="더 보기">
                             </a>
                         </span>
-                    </div>
-                    <ul>
-                        <li>
-                            <a href="http://www.budget.go.kr/info/2017/index.html" target="_blank" title="2017 예산안">
-                                <img src="res/budget_image.jpg" alt="2017 예산안">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.pcce.go.kr/" target="_blank" title="문화융성 정책">
-                                <img src="res/culture_image.jpg" alt="문화융성">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.korea.kr/young" target="_blank" title="청년 정책">
-                                <img src="res/youth_image.jpg" alt="청년정책">
-                            </a>
-                        </li>
-                    </ul>
-                </section>
+                </div>
+                <ul>
+                    <li>
+                        <a href="http://www.budget.go.kr/info/2017/index.html" target="_blank" title="2017 예산안">
+                            <img src="res/budget_image.jpg" alt="2017 예산안">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.pcce.go.kr/" target="_blank" title="문화융성 정책">
+                            <img src="res/culture_image.jpg" alt="문화융성">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.korea.kr/young" target="_blank" title="청년 정책">
+                            <img src="res/youth_image.jpg" alt="청년정책">
+                        </a>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div class="wrapper">
+            <div class="topButton">
+                <a href="#header" title="맨 위로">
+                    맨 위로
+                </a>
+            </div>
+            <div class="foot_menu">
+                <ul>
+                    <li>
+                        <a href="http://www1.president.go.kr/util/agreement_bf2.php" title="이용약관 보기">
+                            이용약관
+                        </a>
+                    </li>
+                    <li class="on">
+                        <a href="http://www1.president.go.kr/util/protection_bf2.php" title="개인정보처리방침 보기">
+                            개인정보처리방침
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www1.president.go.kr/util/copyright.php" title="저작권 정책 보기">
+                            저작권 정책
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www1.president.go.kr/util/sitemap.php" title="사이트맵 보기">
+                            사이트맵
+                        </a>
+                    </li>
+                    <li class="last">
+                        <a href="http://www1.president.go.kr/cheongwadae/cwdViewing/location.php" title="오시는 길 보기">
+                            오시는 길
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <address>
+                <p>
+                    01234 무슨시 어느구 알게뭐냐동 아무길 44-4
+                    <span class="bar">|</span>
+                    H.P 010-6753-0627
+                    <span class="bar">|</span>
+                    E-MAIL lotsofluck4m@gmail.com
+                </p>
+                <p>
+                    © Seongjae Hwang. All rights reserved.
+                </p>
+            </address>
+            <div class="logo_open">
+                <a href="http://www.kogl.or.kr/index.do" title="공공누리 홈페이지 바로가기">
+                    <img src="res/logo_open.png" alt="공공누리 홈페이지">
+                </a>
+            </div>
+            <div class="sns">
+                <ul>
+                    <li>
+                        <a href="http://www.facebook.com/CheongWaDae" title="페이스북 페이지 바로가기" target="_blank">
+                            <img src="res/footer_facebook.png" alt="청와대 페이스북">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://twitter.com/BlueHouseKorea" title="트위터 페이지 바로가기" target="_blank">
+                            <img src="res/footer_twitter.png" alt="청와대 트위터">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://www.youtube.com/user/cheongwadaetv" title="유튜브 페이지 바로가기" target="_blank">
+                            <img src="res/footer_youtube.png" alt="청와대 유튜브">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="relatives">
+
             </div>
         </div>
-
-        <footer id="footer">
-            <div class="wrapper">
-                <div class="topButton">
-                    <a href="#header" title="맨 위로">
-                        맨 위로
-                    </a>
-                </div>
-                <div class="foot_menu">
-                    <ul>
-                        <li>
-                            <a href="http://www1.president.go.kr/util/agreement_bf2.php" title="이용약관 보기">
-                                이용약관
-                            </a>
-                        </li>
-                        <li class="on">
-                            <a href="http://www1.president.go.kr/util/protection_bf2.php" title="개인정보처리방침 보기">
-                                개인정보처리방침
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www1.president.go.kr/util/copyright.php" title="저작권 정책 보기">
-                                저작권 정책
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www1.president.go.kr/util/sitemap.php" title="사이트맵 보기">
-                                사이트맵
-                            </a>
-                        </li>
-                        <li class="last">
-                            <a href="http://www1.president.go.kr/cheongwadae/cwdViewing/location.php" title="오시는 길 보기">
-                                오시는 길
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <address>
-                    <p>
-                        01234 무슨시 어느구 알게뭐냐동 아무길 44-4
-                        <span class="bar">|</span>
-                        H.P 010-6753-0627
-                        <span class="bar">|</span>
-                        E-MAIL lotsofluck4m@gmail.com
-                    </p>
-                    <p>
-                        © Seongjae Hwang. All rights reserved.
-                    </p>
-                </address>
-                <div class="logo_open">
-                    <a href="http://www.kogl.or.kr/index.do" title="공공누리 홈페이지 바로가기">
-                        <img src="res/logo_open.png" alt="공공누리 홈페이지">
-                    </a>
-                </div>
-                <div class="sns">
-                    <ul>
-                        <li>
-                            <a href="http://www.facebook.com/CheongWaDae" title="페이스북 페이지 바로가기" target="_blank">
-                                <img src="res/footer_facebook.png" alt="청와대 페이스북">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://twitter.com/BlueHouseKorea" title="트위터 페이지 바로가기" target="_blank">
-                                <img src="res/footer_twitter.png" alt="청와대 트위터">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="http://www.youtube.com/user/cheongwadaetv" title="유튜브 페이지 바로가기" target="_blank">
-                                <img src="res/footer_youtube.png" alt="청와대 유튜브">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="relatives">
-
-                </div>
-            </div>
-        </footer>
-    </div>
+    </footer>
+</div>
 </body>
 </html>

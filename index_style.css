@@ -1,7 +1,19 @@
 * {
-    padding: 0;
     margin: 0;
-    background: none;
+    padding: 0;
+    font-family: "본고딕", sans-serif;
+}
+
+body {
+    margin-left: auto;
+    margin-right: auto;
+    overflow: auto;
+    width: 1280px;
+    background-image: url("res/space_bg.jpg");
+}
+
+ul {
+    list-style: none;
 }
 
 a {
@@ -9,232 +21,384 @@ a {
     color: black;
 }
 
-head {
-    display: none;
-}
-
-body {
-    color: black;
-    background: url(res/top_background_fill.png) repeat-x 0 0;
-    font-family: "본고딕", "Noto Sans", sans-serif;
-    width: 1200px;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-
-li {
-    display: inline;
-}
-
-li h2 {
-    display: inline;
+#wrap {
+    background: url("res/top_background_fill.png") repeat-x rgb(240, 240, 240);
 }
 
 #header {
-    background: url(res/top_background.png) no-repeat 100% 0;
-    min-width: 1300px;
+    background: url("res/top_background.png") no-repeat right;
+    height: 134px;
+    text-align: center;
+}
+
+.topMenu {
+    height: 27px;
+    vertical-align: middle;
+}
+
+.topMenu ul {
+    height: 100%;
+    vertical-align: middle;
+}
+
+.topMenu ul li {
+    display: inline;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.topMenu ul li:not([class="last"]) {
+    border-right: groove white 1px;
+}
+
+.topMenu #top_srch:hover {
+    content: url("res/icon_srch_on.png");
+}
+
+.topMenu #top_children:hover {
+    content: url("res/icon_kids_on.png");
+}
+
+.topMenu #top_global:hover {
+    content: url("res/icon_global_on.png");
+}
+
+.topMain {
+    height: 107px;
+}
+
+.topMain > .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.topMain > .searchers {
+    position: relative;
+    top: -60px;
+    text-align: right;
+}
+
+#unified_search_form {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.searchers > #unified_search_form > input {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 3px;
+    width: 300px;
+}
+
+#unified_search_form > input::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+#unified_search_form > a {
+    border: ridge rgba(255, 255, 255, 0.5) 2px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.75);
+    margin-left: 5px;
+}
+
+.searchers > .keywords > ul::before {
+    content: url("res/magnifier.png");
+}
+
+.searchers > .keywords > ul {
+    margin-right: 100px;
+}
+
+.searchers > .keywords li {
+    display: inline-flex;
+    margin-left: 10px;
+}
+
+.searchers > .keywords li > a {
+    display: inline-flex;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 13px;
+}
+
+.navigator {
+    display: flex;
+
+}
+
+.navigator li {
+    display: inline-block;
+}
+
+.navigator > .main {
+    display: inline-flex;
+    justify-content: center;
+    width: 50%;
+}
+
+.navigator > .main li {
     margin-left: auto;
     margin-right: auto;
 }
 
-#skip {
-    vertical-align: middle;
-    text-align: center;
-    background: red;
-    z-index: 100;
-    width: 100%;
-    position: absolute;
+.navigator > .recent_issues {
+    width: 50%;
+    display: inline-flex;
+    justify-content: flex-end;
 }
 
-#skip a {
-    text-decoration: none;
-    color: black;
-    overflow: hidden;
-    height: 0;
-    display: block;
+.navigator > .recent_issues li {
+    width: 180px;
+    border: ridge mediumpurple 3px;
+    background: linear-gradient(to bottom right, rgb(66, 94, 155), rgb(143, 58, 81));
+    -webkit-border-bottom-right-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
 }
 
-#skip a:hover, #skip a:active, #skip a:focus {
-    height: 27px;
-    position: relative;
+.navigator > .recent_issues li > a {
+    color: rgba(255, 255, 255, 0.75);
 }
 
-header .topMenu {
-    width: 100%;
-    height: 27px;
-    word-break: keep-all;
-    text-align: center;
-}
-
-header .topMenu li:not([class="last"])::after {
-    content: "|";
-    margin-left: 5px;
-    margin-right: 5px;
-    color: white;
-}
-
-header .topMain {
-    height: 106px;
-    text-align: right;
-}
-
-header .topMain .logo {
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-header .topMain .searcher {
-    position: relative;
-    top: -70px;
-    margin-right: 10px;
-    vertical-align: middle;
-    text-align: left;
-    display: inline-block;
-}
-
-header .topMain .searcher #unified_search_form {
-    vertical-align: middle;
-}
-
-header #unified_search_form .searchBox {
-    display: inline;
-}
-
-header #unified_search_form .searchButton {
-    display: inline-block;
-    border: ridge 1px rgba(255, 255, 255, 0.5);
-    background-color: rgba(255, 255, 255, 0.2);
-    position: relative;
-}
-
-header .searchButton a {
-    color: white;
-    font-size: 12px;
-    text-align: center;
-    vertical-align: middle;
-    padding: 10px;
-}
-
-header .searchBox #unifiedSearchBox {
-    width: 250px;
-    height: 25px;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-}
-
-header .searchBox #unifiedSearchBox::-webkit-input-placeholder {
-    color: white;
-    text-align: left;
-}
-
-header .keywords::before {
-    content: url("res/magnifier.png");
-}
-
-header .keywords ul {
-    display: inline;
-}
-
-header .keywords ul li a {
-    color: white;
-}
-
-header .keywords ul li:not([class="last"])::after {
-    content: "|";
-    margin-left: 5px;
-    margin-right: 5px;
-    color: white;
-}
-
-header .navigator {
-    padding: 0;
-    margin-top: 0;
-    min-width: 1300px;
-    overflow: hidden;
-}
-
-header .navigator .main {
-    display: inline-block;
-    height: 35px;
-    width: 45%;
-    overflow: hidden;
-}
-
-header .navigator .main li {
-    margin-left: 60px;
-}
-
-header .navigator .recent_issues {
-    display: inline-block;
-    background-image: url("res/issues_background.png");
-    text-align: left;
-    height: 35px;
-    width: 480px;
-    position: relative;
-    top: 0;
-    overflow: hidden;
-}
-
-header .navigator .recent_issues li {
-    margin-left:65px;
-    vertical-align: middle;
-}
-
-header .navigator .recent_issues li a{
-    color: white;
+#container {
+    display: flex;
+    justify-content: center;
+    margin-top: 120px;
+=
 }
 
 #container .wrapper {
-    min-width: 1300px;
+    margin-right: 2%;
+    margin-left: 2%;
 }
 
 #container .main_notice {
-    margin-top: 50px;
-    margin-bottom: 50px;
-    vertical-align: top;
+    display: block;
+    margin-right: 1%;
+    margin-left: 1%;
 }
 
-.main_notice .left {
+#container .main_notice .left {
     display: inline-block;
-    width: 650px;
-    height: 800px;
-    overflow: hidden;
-    margin-right: 50px;
+    width: 62%;
+}
+
+.main_notice .left .article01 {
+    display: block;
+    margin-bottom: 2%;
     background-color: white;
 }
 
-.main_notice .right {
+.article01 > .title {
+    display: flex;
+    align-items: center;
+    background-color: rgb(205, 74, 74);
+    padding: 6px 10px 6px 10px;
+}
+
+.article01 > .title > .subject {
+    display: inline-flex;
+    width: 50%;
+}
+
+.article01 > .title > .more {
+    display: inline-flex;
+    justify-content: flex-end;
+    width: 50%;
+}
+
+.article01 > .article01_contents {
+    display: flex;
+}
+
+.article01 > .article01_contents > .post {
     display: inline-block;
-    width: 500px;
-    height: 800px;
-    overflow: hidden;
+    overflow: auto;
+    width: 40%;
+    margin: 50px;
 }
 
-.left .title {
-    background-color: #cc4b4b;
-    vertical-align: middle;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    padding-left: 25px;
-}
-
-.title .subject {
-    display: inline-block;
-    position: relative;
-    width: 300px;
-}
-
-.title .more {
-    display: inline-block;
-    position: relative;
-    width: 300px;
-    text-align: right;
-}
-
-.post .subject {
+.article01 .post > .subject {
     display: block;
-    margin: 10px;
-    font-size: 30px;
+    font-size: 27px;
+}
+
+.article01 .post > .date {
+    display: block;
+    font-size: 15px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.article01 .post > p {
+    margin-bottom: 1em;
+}
+
+.article01 .post > .share li {
+    display: inline;
+}
+
+.article01 > .article01_contents > .media {
+    display: inline-block;
+    overflow: hidden;
+    margin: 20px;
+}
+
+.main_notice .left .article02 {
+    display: block;
+    margin-top: 2%;
+    background-color: white;
+    overflow: hidden;
+    padding: 50px;
+}
+
+.article02 strong img {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.article02 > .article02_contents {
+    display: flex;
+}
+
+.article02 .thumbnail {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.article02 > .post {
+    display: inline-block;
+}
+
+.article02 .post > .subject {
+     display: block;
+     font-size: 22px;
+ }
+
+.article02 .post > .date {
+    display: block;
+    font-size: 12px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.article02 .post > p {
+    margin-bottom: 1em;
+}
+
+.article02 .post > .share li {
+    display: inline;
+}
+
+#container .main_notice .right {
+    display: inline-block;
+    vertical-align: top;
+    width: 32%;
+    margin-left: 1%;
+}
+
+.right > .article03 {
+    display: block;
+    justify-content: flex-end;
+    margin-bottom: 40px;
+}
+
+.right > .article04 {
+    display: block;
+    background-color: white;
+    border-radius: 10px;
+    border: dotted indianred 4px;
+    padding: 9px 15px 9px 15px;
+}
+
+.right .article04 > img {
+    background-color: rgb(205, 74, 74);
+    padding: 9px 15px 9px 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.article04 .button {
+    margin-top: 1em;
+    display: inline-block;
+    background-color: indianred;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.article04 .button a {
+    color: white;
+}
+
+#container .main_policy {
+    display: block;
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-top: 5%;
+    text-align: center;
+    background-color: white;
+}
+
+.main_policy > .title {
+    display: flex;
+    align-items: center;
+    background-color: rgb(205, 74, 74);
+    padding: 6px 10px 6px 10px;
+}
+
+
+.main_policy > .title > .subject {
+    display: inline-flex;
+    width: 50%;
+}
+
+.main_policy > .title > .more {
+    display: inline-flex;
+    justify-content: flex-end;
+    width: 50%;
+}
+
+.main_policy ul {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.main_policy li {
+    display: inline-flex;
+    width: 30%;
+}
+
+footer {
+    margin-top: 50px;
+    margin-right: 30px;
+    margin-left: 30px;
+    color: black;
+    padding: 10px 15px 10px 15px;
+}
+
+footer ul {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+footer li {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+footer a {
+    text-decoration: underline;
+}
+
+footer address {
+    margin-bottom: 20px;
+}
+
+footer .logo_open {
+    display: inline-block;
+}
+
+footer .sns {
+    margin-left: 40px;
+    display: inline-block;
 }
