@@ -9,5 +9,6 @@ function go_search(keyword) {
 }
 
 function go_view(url, seq) {
+
     document.location.href = url + "?srh[view_mode]=detail&srh[seq]=" + seq;
 }
