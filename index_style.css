@@ -25,6 +25,8 @@ a {
     background: url("res/top_background_fill.png") repeat-x rgb(240, 240, 240);
 }
 
+/*header styles*/
+
 #header {
     background: url("res/top_background.png") no-repeat right;
     height: 134px;
@@ -160,6 +162,8 @@ a {
     color: rgba(255, 255, 255, 0.75);
 }
 
+/*contents styles*/
+
 #container {
     display: flex;
     justify-content: center;
@@ -252,7 +256,7 @@ a {
     padding: 50px;
 }
 
-.article02 strong img {
+.article02 h2 img {
     display: block;
     margin-bottom: 10px;
 }
@@ -311,7 +315,7 @@ a {
     padding: 9px 15px 9px 15px;
 }
 
-.right .article04 > img {
+.right .article04 img {
     background-color: rgb(205, 74, 74);
     padding: 9px 15px 9px 15px;
     border-radius: 10px;
@@ -366,6 +370,8 @@ a {
     display: inline-flex;
     width: 30%;
 }
+
+/*footer styles*/
 
 footer {
     margin-top: 50px;
