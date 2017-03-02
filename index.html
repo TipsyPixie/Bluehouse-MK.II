@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <link rel="stylesheet" href="index_style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="res/favicon.ico">
 
     <meta charset="UTF-8">
@@ -46,7 +46,7 @@
             <div class="searchers">
                 <form id="unified_search_form" action="http://www1.president.go.kr/util/search/search.php"
                       accept-charset="EUC-KR">
-                    <input value="기본값" type="text" name="query" id="unifiedSearchBox" placeholder="촛불시위를 검색해보세요!"
+                    <input type="text" name="query" id="unifiedSearchBox" placeholder="촛불시위를 검색해보세요!"
                            title="통합검색어 입력">
                     <a href="javascript:document.getElementById('unified_search_form').submit()">검색</a>
                 </form>
@@ -84,7 +84,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="http://www1.president.go.kr/president/intro.php" title="대통령">
+                    <a href="president.html" title="대통령">
                         <img src="res/nav_president.png" alt="president">
                     </a>
                 </li>
@@ -288,8 +288,6 @@
         </div>
     </div>
 
-    <script src="scripts.js"></script>
-
     <footer id="footer">
         <div class="wrapper">
             <div class="topButton">
@@ -369,4 +367,6 @@
     </footer>
 </div>
 </body>
+
+<script src="scripts.js"></script>
 </html>
