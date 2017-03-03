@@ -374,8 +374,8 @@ a {
 /*president page styles*/
 
 #container2 {
-    display: flex;
     margin-top: 120px;
+    display: flex;
 }
 
 #container2 #Gwanghwamun {
@@ -386,6 +386,9 @@ a {
     background-color: black;
 }
 
+#container2 button {
+    display: block;
+}
 /*footer styles*/
 
 footer {
