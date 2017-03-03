@@ -5,13 +5,13 @@ const painter = {
 
     spriteSrc: "res/candle_sprite.png",
     sprites: [],
-    spriteWidth: 30,
-    spriteHeight: 60,
-    numberOfSprites: 15,
+    spriteWidth: 24,
+    spriteHeight: 48,
+    numberOfSprites: 14,
 
     playerSrc: "res/president_portrait.png",
-    playerWidth: 50,
-    playerHeight: 50,
+    playerWidth: 40,
+    playerHeight: 40,
     direction: Object.freeze({
         DOWN_LEFT: 1,
         DOWN: 2,
@@ -41,22 +41,34 @@ const painter = {
 
     scrollSprite: function (sprite, scrollAmount) {
 
-        sprite.positionY += scrollAmount * sprite.velocityScale;
+        if (sprite.path == "vertical") {
+            sprite.positionY += scrollAmount * sprite.velocityScale;
 
-        if (sprite.positionY > this.height) {
-            this.replaceSprite(sprite);
+            if (sprite.positionY > this.height) {
+                this.replaceSprite(sprite);
+            }
+        }
+        else {
+            sprite.positionX += scrollAmount * sprite.velocityScale;
 
-            if (sprite == this.sprites[0]) {
-                sprite.positionX = this.playerX;
-                sprite.velocityScale = 0.75;
+            if (sprite.positionX > this.width) {
+                this.replaceSprite(sprite);
             }
         }
     },
 
     replaceSprite: function (sprite) {
 
-        sprite.positionY = -this.height * Math.random();
-        sprite.positionX = this.width * Math.random();
+        sprite.path = (Math.random() < 0.75) ? "vertical" : "horizontal";
+
+        if (sprite.path == "vertical") {
+            sprite.positionY = -this.height * Math.random();
+            sprite.positionX = this.width * Math.random();
+        }
+        else {
+            sprite.positionY = this.height * Math.random();
+            sprite.positionX = -this.width * Math.random();
+        }
         sprite.velocityScale = 0.5 + Math.random() * 1.5;
     },
 
@@ -185,7 +197,8 @@ const painter = {
             let spriteBorn = {
                 positionX: 0,
                 positionY: 0,
-                velocityScale: 0
+                velocityScale: 0,
+                path: "vertical"
             };
 
             this.replaceSprite(spriteBorn);
@@ -204,7 +217,7 @@ const painter = {
 
         const backgroundVelocity = 600;
         const spriteVelocity = 360;
-        const playerSpeed = 300;
+        const playerSpeed = 360;
 
         this.getSize(this.canvas);
         this.context.clearRect(0, 0, this.width, this.height);
