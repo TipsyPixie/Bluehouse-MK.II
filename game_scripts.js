@@ -1,31 +1,37 @@
-let canvasControl = {
+let painter = {
     canvasId: "Gwanghwamun",
     backgroundSrc: "res/looping_background.jpg",
-    spriteSrc: "res/candle_sprite.gif",
+    spriteSrc: "res/candle_sprite.png",
     sprites: [],
-    numberOfSprites: 7,
+    spriteWidth: 20,
+    spriteHeight: 20,
+    numberOfSprites: 9,
 
-    getCanvasSize: function(rect) {
+    getCanvasSize: function (rect) {
 
         this.width = rect.width;
         this.height = rect.height;
     },
 
-    scrollBackground: function(scrollAmount) {
+    scrollBackground: function (scrollAmount) {
 
-        this.backgroundY = this.backgroundY + scrollAmount;
+        this.backgroundY += scrollAmount;
 
-        if(this.backgroundY > this.height * 2){
+        if (this.backgroundY > this.height * 2) {
             this.backgroundY = 0;
         }
     },
 
-    scrollSprite: function(sprite) {
+    scrollSprite: function (sprite, scrollAmount) {
 
-        sprite.positionY = sprite.positionY +
+        sprite.positionY += scrollAmount * sprite.velocityScale;
+
+        if (sprite.positionY > this.height) {
+            sprite.positionY = this.spriteWidth * 3 * (Math.random() - 1);
+        }
     },
 
-    createBackgroundImage: function() {
+    createBackgroundImage: function () {
 
         let backgroundImage = new Image();
         backgroundImage.src = this.backgroundSrc;
@@ -35,7 +41,7 @@ let canvasControl = {
         return backgroundImage;
     },
 
-    createSpriteImage: function() {
+    createSpriteImage: function () {
 
         let spriteImage = new Image();
         spriteImage.src = this.spriteSrc;
@@ -44,16 +50,17 @@ let canvasControl = {
         return spriteImage;
     },
 
-    initialize: function() {
+    initialize: function () {
 
         this.field = document.getElementById(this.canvasId);
 
-        if(!this.field.getContext("2d")){
+        if (!this.field.getContext("2d")) {
             return;
         }
         this.context = this.field.getContext("2d");
 
         this.getCanvasSize(this.field);
+
         this.backgroundY = 0;
 
         this.initSprites();
@@ -61,13 +68,13 @@ let canvasControl = {
         // console.log("init");
     },
 
-    initSprites: function() {
+    initSprites: function () {
 
-        for(let i = 0; i < this.numberOfSprites; i++){
+        for (let i = 0; i < this.numberOfSprites; i++) {
             let spriteBorn = {
-                positionX: Math.random() * this.width,
-                positionY: Math.random() * - 10 + this.height,
-                velocity: Math.random() * 2
+                positionX: this.width * Math.random(),
+                positionY: this.spriteWidth * 3 * (Math.random() - 1),
+                velocityScale: 0.5 + Math.random() * 1.5,
             };
 
             this.sprites.push(spriteBorn);
@@ -88,11 +95,19 @@ let canvasControl = {
 
         this.scrollBackground(scrollAmount);
 
-        console.log("canvasControl Y: " + this.backgroundY);
+        let spriteImage;
+        for (let i = 0; i < this.numberOfSprites; i++) {
+
+            spriteImage = this.createSpriteImage();
+            this.context.drawImage(spriteImage, this.sprites[i].positionX, this.sprites[i].positionY, this.spriteWidth, this.spriteHeight);
+
+            this.scrollSprite(this.sprites[i], scrollAmount);
+        }
+
+        // console.log("painter Y: " + this.backgroundY);
     }
 };
 
-window.onload = canvasControl.initialize();
+window.onload = painter.initialize();
+setInterval((() => painter.draw(1)), 1000 / 60);
 
-const frameInterval = 1000 / 60;
-setInterval((() => canvasControl.draw(1)), frameInterval);
