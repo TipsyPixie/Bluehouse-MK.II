@@ -7,7 +7,7 @@ const painter = {
     sprites: [],
     spriteWidth: 24,
     spriteHeight: 48,
-    numberOfSprites: 14,
+    numberOfSprites: 18,
 
     playerSrc: "res/president_portrait.png",
     playerWidth: 40,
@@ -63,13 +63,13 @@ const painter = {
 
         if (sprite.path == "vertical") {
             sprite.positionY = -this.height * Math.random();
-            sprite.positionX = this.width * Math.random();
+            sprite.positionX = (sprite == this.sprites[0]) ? this.playerX : this.width * Math.random();
         }
         else {
-            sprite.positionY = this.height * Math.random();
+            sprite.positionY = (sprite == this.sprites[0]) ? this.playerY : this.height * Math.random();
             sprite.positionX = -this.width * Math.random();
         }
-        sprite.velocityScale = 0.5 + Math.random() * 1.5;
+        sprite.velocityScale = (sprite == this.sprites[0]) ? 0.75 : 0.5 + Math.random() * 1.5;
     },
 
     movePlayer: function (moveAmount) {
