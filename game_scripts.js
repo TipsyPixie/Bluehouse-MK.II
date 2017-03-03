@@ -7,11 +7,11 @@ const painter = {
     sprites: [],
     spriteWidth: 24,
     spriteHeight: 48,
-    numberOfSprites: 18,
+    numberOfSprites: 15,
 
     playerSrc: "res/president_portrait.png",
-    playerWidth: 40,
-    playerHeight: 40,
+    playerWidth: 35,
+    playerHeight: 35,
     direction: Object.freeze({
         DOWN_LEFT: 1,
         DOWN: 2,
@@ -69,7 +69,7 @@ const painter = {
             sprite.positionY = (sprite == this.sprites[0]) ? this.playerY : this.height * Math.random();
             sprite.positionX = -this.width * Math.random();
         }
-        sprite.velocityScale = (sprite == this.sprites[0]) ? 0.75 : 0.5 + Math.random() * 1.5;
+        sprite.velocityScale = (sprite == this.sprites[0]) ? 0.75 : 0.5 + Math.random();
     },
 
     movePlayer: function (moveAmount) {
@@ -239,8 +239,8 @@ const painter = {
 
             this.scrollSprite(this.sprites[i], timeInterval / 1000 * spriteVelocity);
             this.context.drawImage(spriteImage, this.sprites[i].positionX, this.sprites[i].positionY, this.spriteWidth, this.spriteHeight);
-
         }
+
         this.timer += timeInterval / 1000;
 
         for (let i = 0; i < this.numberOfSprites; i++) {
