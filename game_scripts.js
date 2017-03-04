@@ -5,9 +5,9 @@ const painter = {
 
     spriteSrc: "res/candle_sprite.png",
     sprites: [],
-    spriteWidth: 24,
-    spriteHeight: 48,
-    numberOfSprites: 16,
+    spriteWidth: 20,
+    spriteHeight: 36,
+    numberOfSprites: 40,
 
     playerSrc: "res/president_portrait.png",
     playerWidth: 35,
@@ -44,7 +44,8 @@ const painter = {
         if (sprite.path == "vertical") {
             sprite.positionY += scrollAmount * sprite.velocityScale;
 
-            if (sprite.positionY > this.height) {
+            if ((sprite.velocityScale > 0 && sprite.positionY > this.height) ||
+                (sprite.velocityScale < 0 && sprite.positionY + this.spriteHeight < 0)) {
                 this.replaceSprite(sprite);
             }
         }
@@ -52,7 +53,8 @@ const painter = {
             //horizontal
             sprite.positionX += scrollAmount * sprite.velocityScale;
 
-            if (sprite.positionX > this.width) {
+            if ((sprite.velocityScale > 0 && sprite.positionX > this.width) ||
+                (sprite.velocityScale < 0 && sprite.positionX + this.spriteWidth < 0)) {
                 this.replaceSprite(sprite);
             }
         }
@@ -62,16 +64,19 @@ const painter = {
 
         sprite.path = (Math.random() < 0.75) ? "vertical" : "horizontal";
 
+        do {
+            sprite.velocityScale = (Math.random() - 0.5) * 2.5;
+        } while (Math.abs(sprite.velocityScale) < 0.75);
+
         if (sprite.path == "vertical") {
-            sprite.positionY = -this.height * Math.random();
-            sprite.positionX = (sprite == this.sprites[0]) ? this.playerX : this.width * Math.random();
+            sprite.positionY = (sprite.velocityScale > 0) ? -this.height * Math.random() : this.height * (1 + Math.random());
+            sprite.positionX = this.width * Math.random();
         }
         else {
             //horizontal
-            sprite.positionY = (sprite == this.sprites[0]) ? this.playerY : this.height * Math.random();
-            sprite.positionX = -this.width * Math.random();
+            sprite.positionY = this.height * Math.random();
+            sprite.positionX = (sprite.velocityScale > 0) ? -this.width * Math.random() : this.width * (1 + Math.random());
         }
-        sprite.velocityScale = 0.5 + Math.random();
     },
 
     movePlayer: function (moveAmount) {
@@ -215,7 +220,7 @@ const painter = {
     initPlayer: function () {
 
         this.playerX = this.width / 2 - this.playerWidth;
-        this.playerY = this.height - this.playerHeight * 2;
+        this.playerY = this.height / 2 - this.playerHeight;
 
         this.playerImage = this.createPlayerImage();
     },
@@ -223,8 +228,8 @@ const painter = {
     draw: function (timeInterval) {
 
         const backgroundVelocity = 600;
-        const spriteVelocity = 360;
-        const playerSpeed = 360;
+        const spriteVelocity = 200;
+        const playerSpeed = 300;
 
         this.getSize(this.canvas);
         this.context.clearRect(0, 0, this.width, this.height);
@@ -239,15 +244,18 @@ const painter = {
         this.movePlayer(timeInterval / 1000 * playerSpeed);
         this.context.drawImage(this.playerImage, this.playerX, this.playerY, this.playerWidth, this.playerHeight);
 
-        let i = -1;
-        while (++i < this.numberOfSprites && !this.checkCollision(i)) {
+        for (let i = 0; i < this.numberOfSprites; i++) {
             // let spriteImage = this.createSpriteImage();
             this.scrollSprite(this.sprites[i], timeInterval / 1000 * spriteVelocity);
 
             this.context.drawImage(this.spriteImage, this.sprites[i].positionX, this.sprites[i].positionY, this.spriteWidth, this.spriteHeight);
+
+            if (this.checkCollision(i)) break;
         }
 
         this.timer += timeInterval / 1000;
+
+        // console.log(this.sprites[0]);
     },
 
     checkCollision: function (index) {
@@ -295,6 +303,8 @@ const startGame = function () {
     const fps = 60;
     const refreshInterval = 1000 / fps;
 
+    document.removeEventListener("keydown", spacebarListener, false);
+
     document.addEventListener("keydown", keyEventListener, false);
     document.addEventListener("keyup", keyEventListener, false);
 
@@ -307,8 +317,10 @@ const stopGame = function () {
 
     clearInterval(intervalId);
 
-    document.addEventListener("keydown", spacebarListener, false);
+    document.removeEventListener("keydown", keyEventListener, false);
     document.removeEventListener("keyup", keyEventListener, false);
+
+    document.addEventListener("keydown", spacebarListener, false);
 
     alert("탄핵당했습니다! \n" + painter.timer + " 초를 버텼습니다");
 };
