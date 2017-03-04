@@ -262,17 +262,17 @@ const painter = {
 
         const sprite = this.sprites[index];
 
-        const reduceScale = 0.1;
+        const reduceScale = 0.2;
 
         let reducedPlayerX = this.playerX + this.playerWidth * reduceScale;
         let reducedPlayerY = this.playerY + this.playerHeight * reduceScale;
-        let reducedPlayerWidth = this.playerWidth * (1 - reduceScale);
-        let reducedPlayerHeight = this.playerHeight * (1 - reduceScale);
+        let reducedPlayerWidth = this.playerWidth - 2 * this.playerWidth * reduceScale;
+        let reducedPlayerHeight = this.playerHeight - 2 * this.playerHeight * reduceScale;
 
 
-        if (!((sprite.positionX > reducedPlayerX + reducedPlayerWidth * 0.9) ||
-            (sprite.positionX + this.spriteWidth * 0.9 < reducedPlayerX) ||
-            (sprite.positionY + this.spriteHeight * 0.9 < reducedPlayerY) ||
+        if (!((sprite.positionX > reducedPlayerX + reducedPlayerWidth) ||
+            (sprite.positionX + this.spriteWidth < reducedPlayerX) ||
+            (sprite.positionY + this.spriteHeight < reducedPlayerY) ||
             (sprite.positionY > reducedPlayerY + reducedPlayerHeight))) {
 
             this.sprites.length = 0;
