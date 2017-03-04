@@ -330,7 +330,7 @@ const stopGame = function () {
 
     document.addEventListener("keydown", spacebarListener, false);
 
-    alert("탄핵당했습니다! \n" + painter.timer + " 초를 버텼습니다");
+    alert("탄핵소추안이 가결되었습니다!\n\n" + painter.timer.toFixed(3) + " 초를 버텼습니다");
 };
 
 const spacebarListener = function (event) {
