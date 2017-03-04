@@ -7,11 +7,11 @@ const painter = {
     sprites: [],
     spriteWidth: 20,
     spriteHeight: 36,
-    numberOfSprites: 40,
+    maximumSprites: 40,
 
     playerSrc: "res/president_portrait.png",
-    playerWidth: 35,
-    playerHeight: 35,
+    playerWidth: 30,
+    playerHeight: 30,
     direction: Object.freeze({
         DOWN_LEFT: 1,
         DOWN: 2,
@@ -62,7 +62,7 @@ const painter = {
 
     replaceSprite: function (sprite) {
 
-        sprite.path = (Math.random() < 0.75) ? "vertical" : "horizontal";
+        sprite.path = (Math.random() < 0.6) ? "vertical" : "horizontal";
 
         do {
             sprite.velocityScale = (Math.random() - 0.5) * 2.5;
@@ -201,7 +201,7 @@ const painter = {
 
     initSprites: function () {
 
-        for (let i = 0; i < this.numberOfSprites; i++) {
+        for (let i = 0; i < this.maximumSprites; i++) {
             let spriteBorn = {
                 positionX: 0,
                 positionY: 0,
@@ -229,7 +229,7 @@ const painter = {
 
         const backgroundVelocity = 600;
         const spriteVelocity = 200;
-        const playerSpeed = 300;
+        const playerSpeed = 200;
 
         this.getSize(this.canvas);
         this.context.clearRect(0, 0, this.width, this.height);
@@ -244,7 +244,7 @@ const painter = {
         this.movePlayer(timeInterval / 1000 * playerSpeed);
         this.context.drawImage(this.playerImage, this.playerX, this.playerY, this.playerWidth, this.playerHeight);
 
-        for (let i = 0; i < this.numberOfSprites; i++) {
+        for (let i = 0; i < this.maximumSprites; i++) {
             // let spriteImage = this.createSpriteImage();
             this.scrollSprite(this.sprites[i], timeInterval / 1000 * spriteVelocity);
 
@@ -260,12 +260,20 @@ const painter = {
 
     checkCollision: function (index) {
 
-        let sprite = this.sprites[index];
+        const sprite = this.sprites[index];
 
-        if (!((sprite.positionX > this.playerX + this.playerWidth) ||
-            (sprite.positionX + this.spriteWidth < this.playerX) ||
-            (sprite.positionY + this.spriteHeight < this.playerY) ||
-            (sprite.positionY > this.playerY + this.playerHeight))) {
+        const reduceScale = 0.1;
+
+        let reducedPlayerX = this.playerX + this.playerWidth * reduceScale;
+        let reducedPlayerY = this.playerY + this.playerHeight * reduceScale;
+        let reducedPlayerWidth = this.playerWidth * (1 - reduceScale);
+        let reducedPlayerHeight = this.playerHeight * (1 - reduceScale);
+
+
+        if (!((sprite.positionX > reducedPlayerX + reducedPlayerWidth * 0.9) ||
+            (sprite.positionX + this.spriteWidth * 0.9 < reducedPlayerX) ||
+            (sprite.positionY + this.spriteHeight * 0.9 < reducedPlayerY) ||
+            (sprite.positionY > reducedPlayerY + reducedPlayerHeight))) {
 
             this.sprites.length = 0;
 
