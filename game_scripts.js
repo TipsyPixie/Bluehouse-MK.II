@@ -7,7 +7,7 @@ const painter = {
     sprites: [],
     spriteWidth: 24,
     spriteHeight: 48,
-    numberOfSprites: 15,
+    numberOfSprites: 16,
 
     playerSrc: "res/president_portrait.png",
     playerWidth: 35,
@@ -49,6 +49,7 @@ const painter = {
             }
         }
         else {
+            //horizontal
             sprite.positionX += scrollAmount * sprite.velocityScale;
 
             if (sprite.positionX > this.width) {
@@ -66,10 +67,11 @@ const painter = {
             sprite.positionX = (sprite == this.sprites[0]) ? this.playerX : this.width * Math.random();
         }
         else {
+            //horizontal
             sprite.positionY = (sprite == this.sprites[0]) ? this.playerY : this.height * Math.random();
             sprite.positionX = -this.width * Math.random();
         }
-        sprite.velocityScale = (sprite == this.sprites[0]) ? 0.75 : 0.5 + Math.random();
+        sprite.velocityScale = 0.5 + Math.random();
     },
 
     movePlayer: function (moveAmount) {
@@ -167,28 +169,29 @@ const painter = {
             return;
         }
         this.context = this.canvas.getContext("2d");
+        this.context.fillStyle = "white";
 
         this.getSize(this.canvas);
-
-        this.initBackground();
-
-        this.initSprites();
-
-        this.initPlayer();
-
-        this.timer = 0;
 
         keyMap[directionKey.UP] = false;
         keyMap[directionKey.DOWN] = false;
         keyMap[directionKey.LEFT] = false;
         keyMap[directionKey.RIGHT] = false;
 
-        // console.log("init");
+        this.timer = 0;
+
+        this.initBackground();
+
+        this.initSprites();
+
+        this.initPlayer();
     },
 
     initBackground: function () {
 
         this.backgroundY = 0;
+
+        this.backgroundImage = this.createBackgroundImage();
     },
 
     initSprites: function () {
@@ -205,12 +208,16 @@ const painter = {
 
             this.sprites.push(spriteBorn);
         }
+
+        this.spriteImage = this.createSpriteImage();
     },
 
     initPlayer: function () {
 
         this.playerX = this.width / 2 - this.playerWidth;
         this.playerY = this.height - this.playerHeight * 2;
+
+        this.playerImage = this.createPlayerImage();
     },
 
     draw: function (timeInterval) {
@@ -222,30 +229,25 @@ const painter = {
         this.getSize(this.canvas);
         this.context.clearRect(0, 0, this.width, this.height);
 
-        let backgroundImage = this.createBackgroundImage();
-
         this.scrollBackground(timeInterval / 1000 * backgroundVelocity);
-        this.context.drawImage(backgroundImage, 0, this.backgroundY, this.width, this.height);
-        this.context.drawImage(backgroundImage, 0, this.backgroundY - this.height, this.width, this.height);
-        this.context.drawImage(backgroundImage, 0, this.backgroundY - 2 * this.height, this.width, this.height);
+        this.context.drawImage(this.backgroundImage, 0, this.backgroundY, this.width, this.height);
+        this.context.drawImage(this.backgroundImage, 0, this.backgroundY - this.height, this.width, this.height);
+        this.context.drawImage(this.backgroundImage, 0, this.backgroundY - 2 * this.height, this.width, this.height);
 
-        let playerImage = this.createPlayerImage();
+        // let playerImage = this.createPlayerImage();
 
         this.movePlayer(timeInterval / 1000 * playerSpeed);
-        this.context.drawImage(playerImage, this.playerX, this.playerY, this.playerWidth, this.playerHeight);
+        this.context.drawImage(this.playerImage, this.playerX, this.playerY, this.playerWidth, this.playerHeight);
 
-        for (let i = 0; i < this.numberOfSprites; i++) {
-            let spriteImage = this.createSpriteImage();
-
+        let i = -1;
+        while (++i < this.numberOfSprites && !this.checkCollision(i)) {
+            // let spriteImage = this.createSpriteImage();
             this.scrollSprite(this.sprites[i], timeInterval / 1000 * spriteVelocity);
-            this.context.drawImage(spriteImage, this.sprites[i].positionX, this.sprites[i].positionY, this.spriteWidth, this.spriteHeight);
+
+            this.context.drawImage(this.spriteImage, this.sprites[i].positionX, this.sprites[i].positionY, this.spriteWidth, this.spriteHeight);
         }
 
         this.timer += timeInterval / 1000;
-
-        for (let i = 0; i < this.numberOfSprites; i++) {
-            this.checkCollision(i);
-        }
     },
 
     checkCollision: function (index) {
@@ -258,20 +260,13 @@ const painter = {
             (sprite.positionY > this.playerY + this.playerHeight))) {
 
             this.sprites.length = 0;
+
             stopGame();
+
+            return true;
         }
-        // if(sprite.positionX > this.playerX + this.playerWidth){
-        //     console.log("candle's at right");
-        // }
-        // if(sprite.positionX + this.spriteWidth < this.playerX) {
-        //     console.log("candle's at left");
-        // }
-        // if(sprite.positionY + this.spriteHeight < this.playerY) {
-        //     console.log("candle's above");
-        // }
-        // if(sprite.positionY > this.playerY + this.playerHeight) {
-        //     console.log("candle's under");
-        // }
+
+        return false;
     }
 };
 
@@ -312,22 +307,22 @@ const stopGame = function () {
 
     clearInterval(intervalId);
 
-    // document.removeEventListener("keydown",keyEventListener, false);
     document.addEventListener("keydown", spacebarListener, false);
     document.removeEventListener("keyup", keyEventListener, false);
 
-    alert("탄핵당했습니다! \n" + painter.timer + " 초를 버텼습니다")
+    alert("탄핵당했습니다! \n" + painter.timer + " 초를 버텼습니다");
 };
 
 const spacebarListener = function (event) {
 
     if (event.keyCode == 32) {
-        startGame();
         event.preventDefault();
+
+        startGame();
     }
 };
 
-document.addEventListener("keydown", spacebarListener, false);
+window.onload = document.addEventListener("keydown", spacebarListener, false);
 
 
 
