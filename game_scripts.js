@@ -174,7 +174,6 @@ const game = {
             return;
         }
         this.context = this.canvas.getContext("2d");
-        this.context.fillStyle = "white";
 
         this.getSize(this.canvas);
 
