@@ -241,31 +241,6 @@ const game = {
         this.context.drawImage(this.spriteImage, this.sprites[index].positionX, this.sprites[index].positionY, this.spriteWidth, this.spriteHeight);
     },
 
-    proceed: function (timeInterval) {
-
-        const backgroundVelocity = 600;
-        const spriteVelocity = 200;
-        const playerSpeed = 200;
-
-        this.getSize(this.canvas);
-        this.context.clearRect(0, 0, this.width, this.height);
-
-        this.scrollBackground(timeInterval / 1000 * backgroundVelocity);
-        this.drawBackground();
-
-        this.movePlayer(timeInterval / 1000 * playerSpeed);
-        this.drawPlayer();
-
-        for (let i = 0; i < this.maximumSprites; i++) {
-            this.scrollSprite(this.sprites[i], timeInterval / 1000 * spriteVelocity);
-            this.drawSprite(i);
-
-            if (this.checkCollision(i)) break;
-        }
-
-        this.timer += timeInterval / 1000;
-    },
-
     checkCollision: function (index) {
 
         const reduceScale = 0.2;
@@ -291,6 +266,31 @@ const game = {
         else {
             return false;
         }
+    },
+
+    proceed: function (timeInterval) {
+
+        const backgroundVelocity = 600;
+        const spriteVelocity = 200;
+        const playerSpeed = 200;
+
+        this.getSize(this.canvas);
+        this.context.clearRect(0, 0, this.width, this.height);
+
+        this.scrollBackground(timeInterval / 1000 * backgroundVelocity);
+        this.drawBackground();
+
+        this.movePlayer(timeInterval / 1000 * playerSpeed);
+        this.drawPlayer();
+
+        for (let i = 0; i < this.maximumSprites; i++) {
+            this.scrollSprite(this.sprites[i], timeInterval / 1000 * spriteVelocity);
+            this.drawSprite(i);
+
+            if (this.checkCollision(i)) break;
+        }
+
+        this.timer += timeInterval / 1000;
     }
 };
 
