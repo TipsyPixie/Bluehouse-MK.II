@@ -257,7 +257,6 @@ const game = {
         this.drawPlayer();
 
         for (let i = 0; i < this.maximumSprites; i++) {
-            // let spriteImage = this.createSpriteImage();
             this.scrollSprite(this.sprites[i], timeInterval / 1000 * spriteVelocity);
             this.drawSprite(i);
 
