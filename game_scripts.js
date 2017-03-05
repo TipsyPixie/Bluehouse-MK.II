@@ -1,4 +1,4 @@
-const painter = {
+const game = {
     canvasId: "Gwanghwamun",
 
     backgroundSrc: "res/looping_background.jpg",
@@ -270,8 +270,6 @@ const painter = {
 
     checkCollision: function (index) {
 
-        const sprite = this.sprites[index];
-
         const reduceScale = 0.2;
 
         let reducedPlayerX = this.playerX + this.playerWidth * reduceScale;
@@ -279,6 +277,7 @@ const painter = {
         let reducedPlayerWidth = this.playerWidth - 2 * this.playerWidth * reduceScale;
         let reducedPlayerHeight = this.playerHeight - 2 * this.playerHeight * reduceScale;
 
+        const sprite = this.sprites[index];
 
         if (!((sprite.positionX > reducedPlayerX + reducedPlayerWidth) ||
             (sprite.positionX + this.spriteWidth < reducedPlayerX) ||
@@ -291,8 +290,9 @@ const painter = {
 
             return true;
         }
-
-        return false;
+        else {
+            return false;
+        }
     }
 };
 
@@ -326,9 +326,9 @@ const startGame = function () {
     document.addEventListener("keydown", keyEventListener, false);
     document.addEventListener("keyup", keyEventListener, false);
 
-    painter.initialize();
+    game.initialize();
 
-    intervalId = setInterval((() => painter.draw(refreshInterval)), refreshInterval);
+    intervalId = setInterval((() => game.draw(refreshInterval)), refreshInterval);
 };
 
 const stopGame = function () {
@@ -340,7 +340,7 @@ const stopGame = function () {
 
     document.addEventListener("keydown", spacebarListener, false);
 
-    alert("탄핵소추안이 가결되었습니다!\n\n" + painter.timer.toFixed(3) + " 초를 버텼습니다");
+    alert("탄핵소추안이 가결되었습니다!\n\n" + game.timer.toFixed(3) + " 초를 버텼습니다");
 };
 
 const spacebarListener = function (event) {
