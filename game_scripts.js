@@ -46,7 +46,7 @@ const painter = {
 
             if ((sprite.velocityScale > 0 && sprite.positionY > this.height) ||
                 (sprite.velocityScale < 0 && sprite.positionY + this.spriteHeight < 0)) {
-                this.replaceSprite(sprite);
+                this.relocateSprite(sprite);
             }
         }
         else {
@@ -55,12 +55,12 @@ const painter = {
 
             if ((sprite.velocityScale > 0 && sprite.positionX > this.width) ||
                 (sprite.velocityScale < 0 && sprite.positionX + this.spriteWidth < 0)) {
-                this.replaceSprite(sprite);
+                this.relocateSprite(sprite);
             }
         }
     },
 
-    replaceSprite: function (sprite) {
+    relocateSprite: function (sprite) {
 
         sprite.path = (Math.random() < 0.6) ? "vertical" : "horizontal";
 
@@ -209,7 +209,7 @@ const painter = {
                 path: "vertical"
             };
 
-            this.replaceSprite(spriteBorn);
+            this.relocateSprite(spriteBorn);
 
             this.sprites.push(spriteBorn);
         }
