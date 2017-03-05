@@ -242,7 +242,7 @@ const game = {
         this.context.drawImage(this.spriteImage, this.sprites[index].positionX, this.sprites[index].positionY, this.spriteWidth, this.spriteHeight);
     },
 
-    draw: function (timeInterval) {
+    proceed: function (timeInterval) {
 
         const backgroundVelocity = 600;
         const spriteVelocity = 200;
@@ -328,7 +328,7 @@ const startGame = function () {
 
     game.initialize();
 
-    intervalId = setInterval((() => game.draw(refreshInterval)), refreshInterval);
+    intervalId = setInterval((() => game.proceed(refreshInterval)), refreshInterval);
 };
 
 const stopGame = function () {
