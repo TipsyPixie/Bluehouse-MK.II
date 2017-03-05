@@ -24,6 +24,14 @@ const game = {
         UP_RIGHT: 9
     }),
 
+    keyMap: [],
+    directionKeyCode: Object.freeze({
+        LEFT: 37,
+        UP: 38,
+        RIGHT: 39,
+        DOWN: 40
+    }),
+
     getSize: function (rect) {
 
         this.width = rect.width;
@@ -82,14 +90,14 @@ const game = {
     movePlayer: function (moveAmount) {
 
         let currentDirection =
-            (keyMap[directionKey.UP] && keyMap[directionKey.LEFT] && this.direction.UP_LEFT) ||
-            (keyMap[directionKey.UP] && keyMap[directionKey.RIGHT] && this.direction.UP_RIGHT) ||
-            (keyMap[directionKey.DOWN] && keyMap[directionKey.LEFT] && this.direction.DOWN_LEFT) ||
-            (keyMap[directionKey.DOWN] && keyMap[directionKey.RIGHT] && this.direction.DOWN_RIGHT) ||
-            (keyMap[directionKey.UP] && this.direction.UP) ||
-            (keyMap[directionKey.DOWN] && this.direction.DOWN) ||
-            (keyMap[directionKey.LEFT] && this.direction.LEFT) ||
-            (keyMap[directionKey.RIGHT] && this.direction.RIGHT) ||
+            (this.keyMap[this.directionKeyCode.UP] && this.keyMap[this.directionKeyCode.LEFT] && this.direction.UP_LEFT) ||
+            (this.keyMap[this.directionKeyCode.UP] && this.keyMap[this.directionKeyCode.RIGHT] && this.direction.UP_RIGHT) ||
+            (this.keyMap[this.directionKeyCode.DOWN] && this.keyMap[this.directionKeyCode.LEFT] && this.direction.DOWN_LEFT) ||
+            (this.keyMap[this.directionKeyCode.DOWN] && this.keyMap[this.directionKeyCode.RIGHT] && this.direction.DOWN_RIGHT) ||
+            (this.keyMap[this.directionKeyCode.UP] && this.direction.UP) ||
+            (this.keyMap[this.directionKeyCode.DOWN] && this.direction.DOWN) ||
+            (this.keyMap[this.directionKeyCode.LEFT] && this.direction.LEFT) ||
+            (this.keyMap[this.directionKeyCode.RIGHT] && this.direction.RIGHT) ||
             this.direction.NEUTRAL;
 
         switch (currentDirection) {
@@ -177,10 +185,10 @@ const game = {
 
         this.getSize(this.canvas);
 
-        keyMap[directionKey.UP] = false;
-        keyMap[directionKey.DOWN] = false;
-        keyMap[directionKey.LEFT] = false;
-        keyMap[directionKey.RIGHT] = false;
+        this.keyMap[this.directionKeyCode.UP] = false;
+        this.keyMap[this.directionKeyCode.DOWN] = false;
+        this.keyMap[this.directionKeyCode.LEFT] = false;
+        this.keyMap[this.directionKeyCode.RIGHT] = false;
 
         this.timer = 0;
 
@@ -291,26 +299,22 @@ const game = {
         }
 
         this.timer += timeInterval / 1000;
+    },
+
+    directionKeyListener: function (event) {
+
+        if (event.keyCode >= this.directionKeyCode.LEFT && event.keyCode <= this.directionKeyCode.DOWN) {
+            event.preventDefault();
+
+            this.keyMap[event.keyCode] = (event.type == keyEvent.KEY_DOWN);
+        }
     }
 };
 
-const keyMap = {};
-
-const directionKey = Object.freeze({
-    LEFT: 37,
-    UP: 38,
-    RIGHT: 39,
-    DOWN: 40
+const keyEvent = Object.freeze({
+    KEY_DOWN: "keydown",
+    KEY_UP: "keyup"
 });
-
-const keyEventListener = function (event) {
-
-    if (event.keyCode >= directionKey.LEFT && event.keyCode <= directionKey.DOWN) {
-        event.preventDefault();
-
-        keyMap[event.keyCode] = (event.type == "keydown");
-    }
-};
 
 let intervalId;
 
@@ -319,12 +323,12 @@ const startGame = function () {
     const fps = 60;
     const refreshInterval = 1000 / fps;
 
-    document.removeEventListener("keydown", spacebarListener, false);
-
-    document.addEventListener("keydown", keyEventListener, false);
-    document.addEventListener("keyup", keyEventListener, false);
-
     game.initialize();
+
+    document.removeEventListener(keyEvent.KEY_DOWN, spaceBarListener, false);
+
+    document.addEventListener(keyEvent.KEY_DOWN, (() => game.directionKeyListener(event)), false);
+    document.addEventListener(keyEvent.KEY_UP, (() => game.directionKeyListener(event)), false);
 
     intervalId = setInterval((() => game.proceed(refreshInterval)), refreshInterval);
 };
@@ -333,15 +337,15 @@ const stopGame = function () {
 
     clearInterval(intervalId);
 
-    document.removeEventListener("keydown", keyEventListener, false);
-    document.removeEventListener("keyup", keyEventListener, false);
+    document.removeEventListener(keyEvent.KEY_DOWN, (() => game.directionKeyListener(event)), false);
+    document.removeEventListener(keyEvent.KEY_UP, (() => game.directionKeyListener(event)), false);
 
-    document.addEventListener("keydown", spacebarListener, false);
+    document.addEventListener(keyEvent.KEY_DOWN, spaceBarListener, false);
 
     alert("탄핵소추안이 가결되었습니다!\n\n" + game.timer.toFixed(3) + " 초를 버텼습니다");
 };
 
-const spacebarListener = function (event) {
+const spaceBarListener = function (event) {
 
     if (event.keyCode == 32) {
         event.preventDefault();
@@ -350,7 +354,4 @@ const spacebarListener = function (event) {
     }
 };
 
-window.onload = document.addEventListener("keydown", spacebarListener, false);
-
-
-
+window.onload = document.addEventListener(keyEvent.KEY_DOWN, spaceBarListener, false);
