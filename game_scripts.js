@@ -225,6 +225,23 @@ const painter = {
         this.playerImage = this.createPlayerImage();
     },
 
+    drawBackground: function () {
+
+        this.context.drawImage(this.backgroundImage, 0, this.backgroundY, this.width, this.height);
+        this.context.drawImage(this.backgroundImage, 0, this.backgroundY - this.height, this.width, this.height);
+        this.context.drawImage(this.backgroundImage, 0, this.backgroundY - 2 * this.height, this.width, this.height);
+    },
+
+    drawPlayer: function () {
+
+        this.context.drawImage(this.playerImage, this.playerX, this.playerY, this.playerWidth, this.playerHeight);
+    },
+
+    drawSprite: function (index) {
+
+        this.context.drawImage(this.spriteImage, this.sprites[index].positionX, this.sprites[index].positionY, this.spriteWidth, this.spriteHeight);
+    },
+
     draw: function (timeInterval) {
 
         const backgroundVelocity = 600;
@@ -235,27 +252,20 @@ const painter = {
         this.context.clearRect(0, 0, this.width, this.height);
 
         this.scrollBackground(timeInterval / 1000 * backgroundVelocity);
-        this.context.drawImage(this.backgroundImage, 0, this.backgroundY, this.width, this.height);
-        this.context.drawImage(this.backgroundImage, 0, this.backgroundY - this.height, this.width, this.height);
-        this.context.drawImage(this.backgroundImage, 0, this.backgroundY - 2 * this.height, this.width, this.height);
-
-        // let playerImage = this.createPlayerImage();
+        this.drawBackground();
 
         this.movePlayer(timeInterval / 1000 * playerSpeed);
-        this.context.drawImage(this.playerImage, this.playerX, this.playerY, this.playerWidth, this.playerHeight);
+        this.drawPlayer();
 
         for (let i = 0; i < this.maximumSprites; i++) {
             // let spriteImage = this.createSpriteImage();
             this.scrollSprite(this.sprites[i], timeInterval / 1000 * spriteVelocity);
-
-            this.context.drawImage(this.spriteImage, this.sprites[i].positionX, this.sprites[i].positionY, this.spriteWidth, this.spriteHeight);
+            this.drawSprite(i);
 
             if (this.checkCollision(i)) break;
         }
 
         this.timer += timeInterval / 1000;
-
-        // console.log(this.sprites[0]);
     },
 
     checkCollision: function (index) {
