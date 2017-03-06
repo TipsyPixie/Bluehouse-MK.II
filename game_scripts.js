@@ -49,7 +49,7 @@ const game = {
 
     scrollSprite: function (sprite, scrollAmount) {
 
-        if (sprite.path == "vertical") {
+        if (sprite.isVertical) {
             sprite.positionY += scrollAmount * sprite.velocityScale;
 
             if ((sprite.velocityScale > 0 && sprite.positionY > this.height) ||
@@ -70,13 +70,13 @@ const game = {
 
     relocateSprite: function (sprite) {
 
-        sprite.path = (Math.random() < 0.6) ? "vertical" : "horizontal";
+        sprite.isVertical = (Math.random() < 0.7);
 
         do {
             sprite.velocityScale = (Math.random() - 0.5) * 2.5;
         } while (Math.abs(sprite.velocityScale) < 0.75);
 
-        if (sprite.path == "vertical") {
+        if (sprite.isVertical) {
             sprite.positionY = (sprite.velocityScale > 0) ? -this.height * Math.random() : this.height * (1 + Math.random());
             sprite.positionX = this.width * Math.random();
         }
@@ -213,7 +213,7 @@ const game = {
                 positionX: 0,
                 positionY: 0,
                 velocityScale: 0,
-                path: "vertical"
+                isVertical: true
             };
 
             this.relocateSprite(spriteBorn);
