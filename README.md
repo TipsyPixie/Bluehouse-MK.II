@@ -1,4 +1,4 @@
-#Petty HTML/CSS/Javascript tutorial
+<strong>Petty HTML/CSS/Javascript tutorial</strong>
 
 Cloning Bluehouse website with HTML/CSS
 
